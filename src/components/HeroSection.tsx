@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Calendar, Users, QrCode, ArrowRight, ShieldCheck, Sparkles, MapPin, Star } from 'lucide-react';
+import { Calendar, Users, QrCode, ArrowRight, ShieldCheck, Sparkles, MapPin, Star, Play } from 'lucide-react';
 import { HOTEL_IMAGES } from '../data/hotelData';
+import { VideoPlayerModal } from './VideoPlayerModal';
 
 interface HeroSectionProps {
   onSearchReservation: (searchParams: {
@@ -23,6 +24,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearchReservation })
   const [checkOut, setCheckOut] = useState(checkoutDate.toISOString().split('T')[0]);
   const [guests, setGuests] = useState(2);
   const [roomCategory, setRoomCategory] = useState('all');
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +93,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearchReservation })
             <p className="mt-4 text-base sm:text-lg text-slate-200/90 max-w-2xl leading-relaxed">
               Descansa en el corazón de Oruro. Disfruta de nuestras elegantes suites y habitaciones simples y dobles con calefacción, desayuno buffet con salteñas calientes, parqueo techado y pago inmediato con código QR Simple.
             </p>
+
+            {/* Quick Hero Actions */}
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <a
+                href="#habitaciones"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xs sm:text-sm shadow-lg flex items-center gap-2 cursor-pointer transition-all"
+              >
+                <span>Ver Habitaciones & Tarifas</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <button
+                type="button"
+                onClick={() => setIsVideoOpen(true)}
+                className="px-4 py-2.5 rounded-xl bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold text-xs sm:text-sm border border-white/25 flex items-center gap-2 cursor-pointer transition-all shadow-sm"
+              >
+                <Play className="w-4 h-4 fill-white" />
+                <span>Ver Video del Hotel & Carnaval</span>
+              </button>
+            </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-200">
               <span className="flex items-center gap-1.5">
@@ -199,6 +220,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onSearchReservation })
           </form>
         </div>
       </div>
+
+      {/* Video Player Modal */}
+      {isVideoOpen && (
+        <VideoPlayerModal
+          isOpen={true}
+          onClose={() => setIsVideoOpen(false)}
+          videoUrl="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          title="Hotel Claymor · Recorrido Virtual y Carnaval de Oruro"
+          subtitle="Confort andino frente al Parque de la Unión Nacional, Oruro, Bolivia"
+          posterImage={HOTEL_IMAGES.heroFacade}
+        />
+      )}
     </section>
   );
 };

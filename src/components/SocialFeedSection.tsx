@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, MessageCircle, Share2, Play, ExternalLink, Sparkles, Send } from 'lucide-react';
 import { SocialPost, SocialAccount } from '../types/hotel';
+import { VideoPlayerModal } from './VideoPlayerModal';
 
 interface SocialFeedSectionProps {
   posts: SocialPost[];
@@ -19,6 +20,7 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
 }) => {
   const [platformFilter, setPlatformFilter] = useState<'all' | 'instagram' | 'tiktok' | 'facebook'>('all');
   const [commentInputs, setCommentInputs] = useState<{ [postId: string]: string }>({});
+  const [activeVideo, setActiveVideo] = useState<{ url: string; title: string; subtitle?: string; poster?: string } | null>(null);
 
   const filteredPosts = platformFilter === 'all'
     ? posts
@@ -157,7 +159,21 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
               className="bg-white rounded-3xl border border-slate-200/90 overflow-hidden shadow-2xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
             >
               {/* Media Container */}
-              <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden group">
+              <div
+                onClick={() => {
+                  if (post.mediaType === 'video' && post.videoUrl) {
+                    setActiveVideo({
+                      url: post.videoUrl,
+                      title: 'Hotel Claymor - ' + (post.platforms[0]?.toUpperCase() || 'VIDEO'),
+                      subtitle: post.caption,
+                      poster: post.imageUrl,
+                    });
+                  }
+                }}
+                className={`relative aspect-[4/3] bg-slate-100 overflow-hidden group ${
+                  post.mediaType === 'video' ? 'cursor-pointer' : ''
+                }`}
+              >
                 <img
                   src={post.imageUrl}
                   alt={post.caption}
@@ -185,10 +201,15 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
 
                 {/* Video Play indicator if video */}
                 {post.mediaType === 'video' && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 pointer-events-none">
-                    <span className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-md flex items-center justify-center text-slate-900 shadow-md">
-                      <Play className="w-5 h-5 fill-slate-900 ml-0.5" />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/40 transition-colors">
+                    <span className="w-14 h-14 rounded-full bg-white/90 group-hover:bg-white text-slate-900 shadow-xl flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                      <Play className="w-6 h-6 fill-slate-900 ml-0.5" />
                     </span>
+                    {post.videoDuration && (
+                      <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-black/70 px-2 py-0.5 rounded-md">
+                        {post.videoDuration}
+                      </span>
+                    )}
                   </div>
                 )}
 
@@ -288,6 +309,18 @@ export const SocialFeedSection: React.FC<SocialFeedSectionProps> = ({
           ))}
         </div>
       </div>
+
+      {/* Video Player Modal */}
+      {activeVideo && (
+        <VideoPlayerModal
+          isOpen={true}
+          onClose={() => setActiveVideo(null)}
+          videoUrl={activeVideo.url}
+          title={activeVideo.title}
+          subtitle={activeVideo.subtitle}
+          posterImage={activeVideo.poster}
+        />
+      )}
     </section>
   );
 };

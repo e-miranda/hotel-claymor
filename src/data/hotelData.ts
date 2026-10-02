@@ -1,13 +1,21 @@
 import { Room, HotelService, GalleryPhoto, SocialAccount, SocialPost, Reservation } from '../types/hotel';
 
+import heroFacade from '../assets/images/hotel_claymor_facade_1790478222130.jpg';
+import parqueUnionView from '../assets/images/vista_parque_union_1790478234988.jpg';
+import carnavalOruro from '../assets/images/carnaval_de_oruro_1790478210073.jpg';
+import suiteClaymor from '../assets/images/suite_claymor_interior_1790478245414.jpg';
+import habitacionDoble from '../assets/images/habitacion_doble_claymor_1790478255945.jpg';
+import habitacionSimple from '../assets/images/habitacion_simple_claymor_1790478266774.jpg';
+import desayunoBuffet from '../assets/images/desayuno_buffet_claymor_1790478277615.jpg';
+
 export const HOTEL_IMAGES = {
-  heroFacade: '/src/assets/images/hotel_claymor_facade_1790478222130.jpg',
-  parqueUnionView: '/src/assets/images/vista_parque_union_1790478234988.jpg',
-  carnavalOruro: '/src/assets/images/carnaval_de_oruro_1790478210073.jpg',
-  suiteClaymor: '/src/assets/images/suite_claymor_interior_1790478245414.jpg',
-  habitacionDoble: '/src/assets/images/habitacion_doble_claymor_1790478255945.jpg',
-  habitacionSimple: '/src/assets/images/habitacion_simple_claymor_1790478266774.jpg',
-  desayunoBuffet: '/src/assets/images/desayuno_buffet_claymor_1790478277615.jpg',
+  heroFacade,
+  parqueUnionView,
+  carnavalOruro,
+  suiteClaymor,
+  habitacionDoble,
+  habitacionSimple,
+  desayunoBuffet,
 };
 
 export const INITIAL_ROOMS: Room[] = [
@@ -212,6 +220,28 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
     image: HOTEL_IMAGES.desayunoBuffet,
     caption: 'Salteñas jugosas recién horneadas, café aromático de altura, jugos naturales y panadería artesanal.',
     location: 'Comedor Gourmet Claymor'
+  },
+  {
+    id: 'gal-7',
+    title: 'Video Recorrido: Master Suite Claymor & Vistas',
+    category: 'videos',
+    image: HOTEL_IMAGES.suiteClaymor,
+    caption: 'Video en alta definición recorriendo los interiores de la Master Suite y la vista directa al Parque de la Unión Nacional.',
+    location: 'Piso 4 - Master Suite Claymor',
+    isVideo: true,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    duration: '0:15'
+  },
+  {
+    id: 'gal-8',
+    title: 'Video Especial: Majestuosa Diablada de Oruro',
+    category: 'videos',
+    image: HOTEL_IMAGES.carnavalOruro,
+    caption: 'La fastuosa entrada folklórica del Carnaval de Oruro, Obra Maestra del Patrimonio Oral e Intangible de la Humanidad.',
+    location: 'Avenida Cívica & Ruta del Carnaval',
+    isVideo: true,
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    duration: '0:20'
   }
 ];
 
@@ -291,6 +321,7 @@ export const INITIAL_SOCIAL_POSTS: SocialPost[] = [
     hashtags: ['#HotelClaymor', '#Oruro', '#ParqueDeLaUnion', '#HotelBolivia', '#TravelTikTok'],
     imageUrl: HOTEL_IMAGES.parqueUnionView,
     mediaType: 'video',
+    videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     status: 'published',
     publishedAt: 'Ayer',
     likes: 4890,

@@ -29,10 +29,13 @@ export interface HotelService {
 export interface GalleryPhoto {
   id: string;
   title: string;
-  category: 'carnaval' | 'vistas' | 'suites' | 'dobles' | 'gastronomia';
+  category: 'carnaval' | 'vistas' | 'suites' | 'dobles' | 'gastronomia' | 'videos';
   image: string;
   caption: string;
   location: string;
+  isVideo?: boolean;
+  videoUrl?: string;
+  duration?: string;
 }
 
 export interface Reservation {
@@ -87,6 +90,7 @@ export interface SocialPost {
   commentsCount: number;
   shares: number;
   videoDuration?: string;
+  videoUrl?: string;
   comments?: {
     id: string;
     author: string;
