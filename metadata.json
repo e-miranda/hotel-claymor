@@ -1,0 +1,6 @@
+{
+  "name": "Hotel Sol Esmeralda - Resort & Spa",
+  "description": "Hotel moderno de lujo con reserva en línea, pago con código QR, galería profesional, servicios premium y gestor integrado de redes sociales.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
