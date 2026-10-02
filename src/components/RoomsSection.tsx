@@ -170,11 +170,10 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     <span className="text-[11px] text-slate-500 uppercase font-semibold block">Tarifa por noche</span>
                     <div className="flex items-baseline gap-1">
                       <span className="text-2xl sm:text-3xl font-extrabold font-serif text-slate-900">
-                        ${room.pricePerNight}
+                        Bs. {room.pricePerNight}
                       </span>
-                      <span className="text-xs text-slate-500 font-medium">USD</span>
-                      <span className="text-xs font-semibold text-emerald-800 ml-1.5">
-                        (≈ Bs {Math.round(room.pricePerNight * 6.96)})
+                      <span className="text-xs text-emerald-800 font-semibold ml-1">
+                        BOB
                       </span>
                     </div>
                   </div>
@@ -189,7 +188,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({
                     </button>
                     
                     <a
-                      href={`https://wa.me/59171234567?text=Hola%20Hotel%20Claymor,%20deseo%20solicitar%20la%20reserva%20de%20la%20habitaci%C3%B3n:%20${encodeURIComponent(room.name)}%20(Tarifa:%20$${room.pricePerNight}%20USD/noche).`}
+                      href={`https://wa.me/59171234567?text=Hola%20Hotel%20Claymor,%20deseo%20solicitar%20la%20reserva%20de%20la%20habitaci%C3%B3n:%20${encodeURIComponent(room.name)}%20(Tarifa:%20Bs.%20${room.pricePerNight}/noche).`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors cursor-pointer"

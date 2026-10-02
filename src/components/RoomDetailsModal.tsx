@@ -114,11 +114,10 @@ export const RoomDetailsModal: React.FC<RoomDetailsModalProps> = ({
             <span className="text-[11px] text-slate-500 uppercase font-semibold block">Precio por noche</span>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl sm:text-3xl font-extrabold font-serif text-slate-900">
-                ${room.pricePerNight}
+                Bs. {room.pricePerNight}
               </span>
-              <span className="text-xs text-slate-500 font-medium">USD</span>
-              <span className="text-xs font-semibold text-emerald-800 ml-1.5">
-                (≈ Bs {Math.round(room.pricePerNight * 6.96)})
+              <span className="text-xs text-emerald-800 font-semibold ml-1">
+                BOB
               </span>
             </div>
           </div>

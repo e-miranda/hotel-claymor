@@ -90,7 +90,7 @@ export const HotelReceptionModal: React.FC<HotelReceptionModalProps> = ({
               Ingresos Registrados
             </span>
             <span className="text-2xl font-serif font-bold text-slate-900 mt-0.5 block">
-              ${totalRevenue.toLocaleString()} USD
+              Bs. {totalRevenue.toLocaleString()} BOB
             </span>
           </div>
         </div>
@@ -179,7 +179,7 @@ export const HotelReceptionModal: React.FC<HotelReceptionModalProps> = ({
                       <div className="text-[11px] text-slate-400">al {res.checkOut}</div>
                     </td>
                     <td className="p-3.5 font-serif font-bold text-slate-900">
-                      ${res.totalAmount} USD
+                      Bs. {res.totalAmount}
                     </td>
                     <td className="p-3.5">
                       {res.paymentStatus === 'paid' ? (

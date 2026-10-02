@@ -131,7 +131,7 @@ export const ReservationLookupModal: React.FC<ReservationLookupModalProps> = ({
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase font-bold">Total Abonado</span>
                       <span className="font-serif font-bold text-slate-900 text-sm">
-                        ${searchResult.totalAmount} USD
+                        Bs. {searchResult.totalAmount} BOB
                       </span>
                     </div>
                   </div>

@@ -27,11 +27,11 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
   useEffect(() => {
     let payload = '';
     if (qrMode === 'bancario') {
-      payload = `QRSIMPLE_BOLIVIA:HOTEL_CLAYMOR;REF:${referenceCode};AMOUNT_USD:${amount};AMOUNT_BOB:${(amount * 6.96).toFixed(2)};ACCOUNT:201-5092819-3-01_BCP_BOLIVIA;NIT:3829102014;BENEFICIARY:HOTEL_CLAYMOR_SRL;CITY:ORURO;GUEST:${encodeURIComponent(guestName)}`;
+      payload = `QRSIMPLE_BOLIVIA:HOTEL_CLAYMOR;REF:${referenceCode};AMOUNT_BOB:${amount.toFixed(2)};ACCOUNT:201-5092819-3-01_BCP_BOLIVIA;NIT:3829102014;BENEFICIARY:HOTEL_CLAYMOR_SRL;CITY:ORURO;GUEST:${encodeURIComponent(guestName)}`;
     } else if (qrMode === 'billetera') {
-      payload = `WALLET_BOLIVIA_YAPE_TIGO:HOTEL_CLAYMOR;REF:${referenceCode};BOB:${(amount * 6.96).toFixed(2)};PHONE:+59171234567;MSG:Reserva_Claymor_Oruro_${referenceCode}`;
+      payload = `WALLET_BOLIVIA_YAPE_TIGO:HOTEL_CLAYMOR;REF:${referenceCode};BOB:${amount.toFixed(2)};PHONE:+59171234567;MSG:Reserva_Claymor_Oruro_${referenceCode}`;
     } else {
-      payload = `ethereum:0x71C8A1842eD4e27bA10bCfe39c6328A2520E9E8C?value=${(amount * 0.00035).toFixed(4)}&data=${referenceCode}`;
+      payload = `ethereum:0x71C8A1842eD4e27bA10bCfe39c6328A2520E9E8C?value=${(amount * 0.00005).toFixed(4)}&data=${referenceCode}`;
     }
 
     QRCode.toDataURL(payload, {
@@ -158,10 +158,10 @@ export const QRCodeDisplay: React.FC<QRCodeDisplayProps> = ({
             <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Total a transferir</span>
             <div className="flex items-baseline gap-2 mt-0.5">
               <span className="text-3xl font-extrabold text-slate-900 font-serif">
-                ${amount} {currency}
+                Bs. {amount.toFixed(2)}
               </span>
-              <span className="text-xs text-slate-500 font-semibold">
-                (≈ Bs {(amount * 6.96).toFixed(2)} BOB)
+              <span className="text-xs text-emerald-800 font-semibold">
+                BOB (Bolivianos)
               </span>
             </div>
           </div>

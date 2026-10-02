@@ -97,11 +97,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   const diffTime = checkOutDate.getTime() - checkInDate.getTime();
   const calculatedNights = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1);
 
-  // Price calculations
-  const roomTotal = (selectedRoom ? selectedRoom.pricePerNight : 200) * calculatedNights;
-  const spaTotal = spaPackage ? 65 * guests : 0;
-  const transferTotal = airportTransfer ? 45 : 0;
-  const breakfastTotal = premiumBreakfast ? 25 * calculatedNights : 0; // standard buffet is already free, this is champagne & caviar upgrade
+  // Price calculations in Bolivianos (Bs.)
+  const roomTotal = (selectedRoom ? selectedRoom.pricePerNight : 450) * calculatedNights;
+  const spaTotal = spaPackage ? 175 * guests : 0;
+  const transferTotal = airportTransfer ? 140 : 0;
+  const breakfastTotal = premiumBreakfast ? 150 * calculatedNights : 0;
   const subtotal = roomTotal + spaTotal + transferTotal + breakfastTotal;
   const taxes = Math.round(subtotal * 0.10); // 10% hotel tax
   const grandTotal = subtotal + taxes;
@@ -139,7 +139,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         premiumBreakfast,
       },
       totalAmount: grandTotal,
-      currency: 'USD',
+      currency: 'Bs.',
       paymentMethod,
       paymentStatus: isInstantPaid ? 'paid' : paymentMethod === 'reception' ? 'reception_due' : 'pending_verification',
       qrReferenceCode: generatedRefCode,
@@ -290,7 +290,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                           <div className="flex items-baseline justify-between mt-2 pt-2 border-t border-slate-100">
                             <span className="text-[11px] text-slate-400">Por noche:</span>
                             <span className="font-bold font-serif text-slate-900 text-base">
-                              ${room.pricePerNight} USD
+                              Bs. {room.pricePerNight}
                             </span>
                           </div>
                         </div>
@@ -417,7 +417,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       </div>
                     </div>
                     <span className="text-xs font-bold text-emerald-700 whitespace-nowrap">
-                      +$25 USD
+                      +Bs. 175
                     </span>
                   </label>
 
@@ -439,7 +439,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       </div>
                     </div>
                     <span className="text-xs font-bold text-emerald-700 whitespace-nowrap">
-                      +$20 USD Total
+                      +Bs. 140 Total
                     </span>
                   </label>
                 </div>
@@ -459,10 +459,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   <span className="text-[10px] text-slate-500 uppercase block font-semibold">Total con Impuestos</span>
                   <div className="flex items-baseline gap-1">
                     <span className="text-2xl font-serif font-extrabold text-slate-900">
-                      ${grandTotal} USD
+                      Bs. {grandTotal}
                     </span>
                     <span className="text-xs text-emerald-800 font-bold ml-1">
-                      (≈ Bs {Math.round(grandTotal * 6.96)})
+                      BOB
                     </span>
                   </div>
                 </div>
@@ -512,7 +512,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               {/* QR Component */}
               <QRCodeDisplay
                 amount={grandTotal}
-                currency="USD"
+                currency="Bs."
                 referenceCode={generatedRefCode}
                 guestName={guestName || 'Huésped Estimado'}
                 onPaymentSuccess={() => handleFinishBooking(true)}
@@ -625,7 +625,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       <div className="flex items-center gap-2">
                         <span className="text-slate-500">Monto Total:</span>
                         <span className="font-serif font-extrabold text-slate-900 text-base">
-                          ${completedReservation.totalAmount} USD
+                          Bs. {completedReservation.totalAmount} BOB
                         </span>
                       </div>
                       <div className="text-[11px] text-slate-500">
